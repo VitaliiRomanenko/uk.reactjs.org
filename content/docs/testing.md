@@ -7,34 +7,37 @@ redirect_from:
 next: testing-recipes.html
 ---
 
-You can test React components similar to testing other JavaScript code.
+Ви можете тестувати React компоненти так само, як і інший код JavaScript.
 
-There are a few ways to test React components. Broadly, they divide into two categories:
+Існує кілька способів протестувати React компоненти. Загалом вони діляться на дві категорії:
 
-* **Rendering component trees** in a simplified test environment and asserting on their output.
-* **Running a complete app** in a realistic browser environment (also known as “end-to-end” tests).
+* **Рендерінг дерев компонентів** у спрощеному середовищі тестування та перевірка значань що вони повертають.
+* **Запуск всього додатку** у реалістичному середовищі браузера (так звані «end-to-end» або "наскрізні" тести).
 
-This documentation section focuses on testing strategies for the first case. While full end-to-end tests can be very useful to prevent regressions to important workflows, such tests are not concerned with React components in particular, and are out of the scope of this section.
+Цей розділ документації присвячений стратегіям тестування для першого випадку. Хоча повні наскрізні тести можуть бути дуже корисними для запобігання регресії до важливих робочих процесів, такі тести не стосуються React компонентів, зокрема, і виходять за рамки цього розділу..
 
-### Tradeoffs {#tradeoffs}
+### Компроміси {#tradeoffs}
 
 
-When choosing testing tools, it is worth considering a few tradeoffs:
+Вибираючи інструменти тестування, варто враховувати кілька компромісів:
 
-* **Iteration speed vs Realistic environment:** Some tools offer a very quick feedback loop between making a change and seeing the result, but don't model the browser behavior precisely. Other tools might use a real browser environment, but reduce the iteration speed and are flakier on a continuous integration server.
-* **How much to mock:** With components, the distinction between a "unit" and "integration" test can be blurry. If you're testing a form, should its test also test the buttons inside of it? Or should a button component have its own test suite? Should refactoring a button ever break the form test?
+* **Швидкість ітерації проти реалістичного середовища:** Деякі інструменти пропонують дуже швидкий цикл зворотного зв’язку між внесенням змін і переглядом результату, але не моделюють точно поведінку браузера. Інші інструменти можуть використовувати реальне середовище браузера, але знижують швидкість ітерації та можуть викликати проблеми при безперервній інтеграції.
+* **Скільки mock об'єктів використовувати:** Що стосується компонентів, то відмінність між "Юніт" та "Інтеграційними" тестами  може бути розмитою. Якщо ви тестуєте форму, чи повинен її тест також перевіряти кнопки всередині неї? Або компонент кнопки повинен мати власний набір тестів? Чи повинен рефакторинг кнопки коли-небудь зламамти тест форми?
 
-Different answers may work for different teams and products.
+Різні відповіді можуть працювати для різних команд і продуктів.
 
 ### Recommended Tools {#tools}
 
-**[Jest](https://facebook.github.io/jest/)** is a JavaScript test runner that lets you access the DOM via [`jsdom`](/docs/testing-environments.html#mocking-a-rendering-surface). While jsdom is only an approximation of how the browser works, it is often good enough for testing React components. Jest provides a great iteration speed combined with powerful features like mocking [modules](/docs/testing-environments.html#mocking-modules) and [timers](/docs/testing-environments.html#mocking-timers) so you can have more control over how the code executes.
+**[Jest](https://facebook.github.io/jest/)** — це засіб для тестування JavaScript, який дозволяє отримати доступ до DOM через [`jsdom`](/docs/testing-environments.html#mocking-a-rendering-surface). Хоча jsdom — це лише наближення до того, як працює браузер, його часто достатньо для тестування React компонентів. Jest забезпечує чудову швидкість ітерації в поєднанні з такими потужними функціями, як mocking [модулі](/docs/testing-environments.html#mocking-modules) та [таймери](/docs/testing-environments.html#mocking-timers), щоб ви могли мати більше контролю над тим, як виконується код
 
-**[React Testing Library](https://testing-library.com/react)** is a set of helpers that let you test React components without relying on their implementation details. This approach makes refactoring a breeze and also nudges you towards best practices for accessibility. Although it doesn't provide a way to "shallowly" render a component without its children, a test runner like Jest lets you do this by [mocking](/docs/testing-recipes.html#mocking-modules).
 
-### Learn More {#learn-more}
 
-This section is divided in two pages:
+**[React Testing Library](https://testing-library.com/react)** - це набір помічників, які дозволяють тестувати компоненти React, не покладаючись на деталі їх реалізації. Такий підхід робить рефакторинг легким, а також підштовхує вас до найкращих методів забезпечення доступності. Незважаючи на те, що він не надає способу «поверхнево» відображати компонент без його дочірніх елементів, виконавці тестів, як до прикладу Jest, дозволяє зробити це за допомогою [mocking] (/docs/testing-recipes.html#mocking-modules).
 
-- [Recipes](/docs/testing-recipes.html): Common patterns when writing tests for React components.
-- [Environments](/docs/testing-environments.html): What to consider when setting up a testing environment for React components.
+
+### Що далі? {#learn-more}
+
+Цей розділ розділений на дві сторінки:
+
+- [Рецепти](/docs/testing-recipes.html): Поширені шаблони під час написання тестів для React компонентів.
+- [Середовища](/docs/testing-environments.html): Що потрібно враховувати під час налаштування середовища тестування React компонентів.
